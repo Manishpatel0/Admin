@@ -1,16 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int size = 0;
 struct Node
 {
 	int data;
 	struct Node *next;
 };
 
+struct Node *newNode(int data){
+	struct Node *node = (struct Node*) malloc(sizeof(struct Node));
+	node->data = data;
+	node->next = NULL;
+	return (node);
+}
+
 void travalios(struct Node *ptr){
 	while(ptr != NULL){
 		printf("%d ",ptr->data);
 		ptr = ptr->next;
+		size +=1;
 	}
 	printf(" ");
 }
@@ -28,6 +37,7 @@ int main(){
 	 struct Node *second = (struct Node*) malloc(sizeof(struct Node));
 	 struct Node *third = (struct Node*) malloc(sizeof(struct Node));
 	 struct Node *four = (struct Node*) malloc(sizeof(struct Node));
+	 struct Node *five = newNode(33);
 
 	 head->data = 7;
 	 head->next = second;
@@ -39,7 +49,7 @@ int main(){
 	 third->next = four;
 
 	 four->data = 18;
-	 four->next = NULL;
+	 four->next = five;
 	 printf("Linked list data\n");
 	 travalios(head);
 
@@ -53,6 +63,7 @@ int main(){
 	 ptr->next = second->next;
 	 second->next = ptr;
 	 travalios(head);
+	 printf("\nSize : %d ", size);
 
 	 
 	return 0;
